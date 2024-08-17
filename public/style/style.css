@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background: linear-gradient(to bottom, #141E30, #233A54);
+}
+.right{
+    width: 55vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    justify-content: center;
+}
+#h1{
+    font-family: "Poppins";
+    font-weight: 800;
+    font-size: 64px;
+    -webkit-text-stroke: 2px #0092FF;
+    text-shadow: -4px 2px 10px  #0092FF;
+}
+.paragraph{
+    
+    font-family: "Poppins";
+    font-size: 24px;
+    line-height: 45px;
+    max-width: 50%;
+}
+.btns{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#joinshow{
+    width: 270px;
+    height: 75px;
+    color: black;
+    background-color: white;
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+    font-family: "Poppins";
+    font-size: 24px;
+    border: white 2px solid;
+    transition: ease 0.25s;
+    text-decoration: white underline ;
+
+}
+#joinshow:hover{
+    text-decoration: red underline ;
+}
+
+
+#createshow{
+    width: 270px;
+    height: 75px;
+    color: white;
+    background-color: transparent;
+    border-radius: 22px;
+    border: 2px white solid;
+    cursor: pointer;
+    font-family: "Poppins";
+    font-size: 24px;
+    margin-left: 50px;
+    text-decoration: transparent underline ;
+    transition: ease 0.25s;
+}
+#createshow:hover{
+    background-color: white;
+    color: black;
+    text-decoration: red underline;
+}
+
+
+.left{
+    display: flex;
+    justify-content: center;
+}
+img{
+    align-self: center;
+}
+.roomjoinboard {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+
+
+#x{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(185, 14, 14);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    font-family: "poppins";
+    font-size: 25px;
+    font-weight: 800;
+}
+.frm{
+    align-self: center;
+    background-color: #0D131D;
+    height: 60%;
+    padding: 40px;
+    width: fit-content;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    margin-top: 25px;
+}
+.labinp{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    width: 400px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    height: 60px;
+    border-bottom: 2px rgba(255, 255, 255, 0.5) solid;
+    outline: none;
+}
+
+input:active{
+    border: none;
+}
+label{
+    padding-left: 10px;
+    padding-bottom: 2px;
+}
+
+.tit{
+    padding: 0;
+    color: #E3E3E1;
+    font-weight: 600;
+    font-family: "Poppins";
+    text-align: center;
+}
+
+button{
+    width: 170px;
+    height: 65px;
+    border: 2px #0092FF solid;
+    color: #0092FF;
+    background-color: transparent;
+    outline: none;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 22px;
+    transition: ease 0.25s;
+}
+button:hover{
+    background-color: white;
+}
+.btnbox{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#labsize{
+    display: flex;
+    flex-direction: row;
+    color: rgba(255, 255, 255, 0.397);
+    font-size: 34px;
+}
+#size {
+    margin-left: 20px;
+    appearance: none; /* Removes the default select styling */
+    width: 250px; /* Match the width of input fields */
+    background-color: transparent; /* Make background transparent */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-bottom: 2px rgba(255, 255, 255, 0.5) solid; /* Match input field border style */
+    font-size: 24px; /* Match font size */
+    outline: none; /* Remove default outline */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+#size option {
+    background: #0D131D; /* Match background color of input fields */
+    color: white; /* Text color in dropdown */
+}

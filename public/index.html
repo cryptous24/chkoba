@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>        
+        
+        <div class="roomjoinboard" id="3asba">
+            <div id="x" onclick="hide()">x</div>
+            <form action="chkoba.html" id="joinform" class="frm">
+
+                <h1 class="tit">Join room</h1>
+
+
+                <div class="labinp">
+                    <input type="text" name="name" placeholder="username">
+                </div>
+                
+                <div class="labinp">
+                    <input type="text" name="roomname" id="roomname" placeholder="room name">
+                </div>
+
+                <div class="labinp">
+                    <input type="text" name="pass" id="joinpass" placeholder="password">
+                </div>
+                
+                
+                <div class="btnbox">
+                    <button type="button" onclick="join()">join room</button>
+                </div>
+            </form>
+        </div>
+
+        
+        <div class="roomjoinboard" id="create3asba">
+            <div id="x" onclick="hide1()">x</div>
+            <form action="chkoba.html" id="form" class="frm">
+
+                <h1 class="tit">Create room</h1>
+                
+                <div class="labinp">
+                    <input type="text" name="name" placeholder="username">
+                </div>
+
+                <div class="labinp">
+                    <input type="text" name="roomname" id="newroomname" placeholder="room name">
+                </div>
+
+                <div class="labinp">
+                    <input type="text" name="pass" id=pass placeholder="password">
+                </div>
+
+                <div class="labinp" id="labsize">
+                    <label for="size">size</label>
+                    <select name="size" id="size">
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+
+                <div class="btnbox">
+                    <button type="button" onclick="create()">create room</button>
+                </div>
+            </form>
+        </div>
+
+
+    <div class="right">
+        <h1 id="h1">Let the game begin</h1>
+        <center>
+        <p class="paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+    </center>
+        <div class="btns">
+            <button onclick="show()" id="joinshow">Join room</button>
+            <button onclick="show1()" id="createshow">Create room</button>
+        </div>
+    </div>
+    
+    <div class="left">
+        <img src="images/—Pngtree—playing dice vector set realistic_5222159 1.png" alt="">
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

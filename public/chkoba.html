@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHkobba game</title>
+    <link rel="stylesheet" href="style/chkoba.css">
+</head>
+<body>
+    <div class="roomjoinboard" id="winner">
+        <div class="takeitorleaveit" id="myresult0.1">
+            <h1 id="winnertxt">Mabourk <span id="winnername"></span> Rbe7</h1>
+            <button id="keepit" onclick="newg()">new game</button>
+        </div>
+    </div>
+
+    <div class="roomjoinboard" id="generalscore">
+        <div class="takeitorleaveit" id="myresult">
+            <div class="aplyerrres" id="playersres">
+                <h2 class="pname" id="myresscore">0</h2>
+                <h2 class="redscore" id="myresultname" >test name</h2>
+            </div>
+
+            <div class="desiction">
+                <button id="keepit" onclick="next()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="roomjoinboard" id="takeorleave">
+        <div class="takeitorleaveit">
+            <div class="top" id="ttop">
+                
+            </div>
+            <div class="desiction">
+                <button id="keepit" onclick="take_it()">keep it</button>
+                <button id="leaveit" onclick="leave_it()">leave it</button>
+            </div>
+        </div>
+    </div>  
+
+
+    <div class="right">
+        <div class="playerallin" id="player1">
+            <div class="backcards">
+                <img src="images/backcards.png" alt="" id="backcard">
+            </div>
+            <div class="imagehoder">
+                <img src="images/Ellipse 4.png" alt="" id="img">
+                <h2 class="score" id="score1">0</h2> 
+            </div>
+            <h2  class="pname" id="playername1">player 1</h2>
+        </div>
+
+        <div class="playerallin" id="player2" >
+            <div class="backcards">
+                <img src="images/backcards.png" alt="" id="backcard">
+            </div>
+            <div class="imagehoder">
+                <img src="images/Ellipse 6.png" alt="" id="img">
+                <h2 class="score" id="score2">0</h2>
+            </div>
+            <h2  class="pname" id="playername2">player 2</h2>
+        </div>
+    </div>
+
+
+
+    <div class="middle">
+        <div class="hell" >
+            <h1 id="turnwait">waiting</h1>
+        </div>
+        <div class="tapisholder">        
+            <div id="tapiz">
+             
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+
+    <div class="left">
+        <div class="playerallin" id="player3">
+            <div class="backcards">
+                <img src="images/backcards.png" alt="" id="backcard">
+            </div>
+            <div class="imagehoder">
+                <img src="images/Ellipse 6.png" alt="" id="img">
+                <h2 class="score" id="score3">0</h2>
+            </div>
+            <h2  class="pname" id="playername3">player 3</h2>
+        </div>
+
+        
+            <div class="mydiv" id="pllf">
+                <div class="mycards">
+                    <div class="card-container" id="card-container">
+                        <!--<img src="cards/diamonds_3.png"  class="mycard" >
+                        <img src="cards/clubs_6.png"  class="mycard" > 
+                        <img src="cards/hearts_3.png"  class="mycard" > 
+                        -->
+                    </div>
+                </div>
+                <div class="imagehoder" id="myimage">
+                    <img src="images/Ellipse 6.png" alt="" id="img">
+                    <h2 class="score" id="myscore">0</h2>
+                </div>
+                <h2  class="pname" id="myname"></h2>
+            </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qs/dist/qs.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/chkoba.js"></script>
+</body>
+</html>
