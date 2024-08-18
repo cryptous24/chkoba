@@ -30,7 +30,7 @@ body{
     
     font-family: "Poppins";
     font-size: 24px;
-    line-height: 45px;
+    line-height: 41px;
     max-width: 50%;
 }
 .btns{
@@ -207,4 +207,26 @@ button:hover{
 #size option {
     background: #0D131D; /* Match background color of input fields */
     color: white; /* Text color in dropdown */
+}
+.beta{
+    font-family: "Poppins";
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 30px;
+    margin-left: 30px;
+    color: red;
+    font-weight: 700;
+    font-size: 72px;
+}
+footer{
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.377);
+    text-align: center;
+    color: white;
+    font-family: "poppins";
+    font-size: 18px;
 }

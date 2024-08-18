@@ -1,6 +1,7 @@
 const socket = io()
 
 
+
 function show(){
     document.getElementById("3asba").style.display = "flex"
 }
@@ -18,6 +19,17 @@ function hide1(){
 }
 
 function create(){
+    let roomname = document.getElementById("newroomname").value
+    let username = document.getElementById("nusername").value
+    if(username === ""){
+        alert("please input you name")
+        return false
+    }
+
+    if(roomname === ""){
+        alert("please input room name")
+        return false
+    }
     roomName = document.getElementById("newroomname").value
     pass = document.getElementById("pass").value
     size = document.getElementById("size").value
@@ -32,6 +44,17 @@ function create(){
 }
 
 function join(){
+    let roomname = document.getElementById("roomname").value
+    let username = document.getElementById("username").value
+    if(username === ""){
+        alert("please input you name")
+        return false
+    }
+
+    if(roomname === ""){
+        alert("please input room name")
+        return false
+    }
     roomName = document.getElementById("roomname").value
 
     socket.emit('checkRoomExists', roomName, (exists) => {
