@@ -18,6 +18,7 @@ document.getElementById("myresultname").textContent = data.name
 function show_rooms(){
     socket.emit("show rooms")
 }
+winning_score = 0
 
   
 
@@ -56,14 +57,13 @@ function display_users(lst){
 
 
 lasteaten = ""
-round = 0
 roomusers = []
 players_score = []
 turn = ""
 socket.on("room users" , users => {
     roomusers = users
     display_users(roomusers)
-    turn = roomusers[round]
+    turn = roomusers[0]
     for (let i = 0; i < roomusers.length-1; i++) {
         players_score.push(0)
     }
@@ -149,9 +149,47 @@ function draw(deck, n){
 function deletefromdeck(lst){
     deck = deck.filter(item => !lst.includes(item));
     console.log(deck.length)
+    if(deck.length == 31){
+        alert("oh shit baby")
+    }
 }
 
-function put_card_on_table(deck, n){
+function put_card_on_table(deck, n) {
+    if (n > deck.length) {
+        console.error("Cannot draw more unique cards than available in the deck");
+        return [];
+    }
+
+    const usedIndexes = new Set(); // A Set to store unique indexes
+    const index = [];
+
+    while (index.length < n) {
+        let randomIndex = Math.floor(Math.random() * deck.length);
+
+        if (!usedIndexes.has(randomIndex)) {
+            usedIndexes.add(randomIndex);
+            index.push(deck[randomIndex]);
+
+            let img = document.createElement("img");
+            img.className = "card";
+            img.src = "cards/" + deck[randomIndex] + ".png";
+            img.value = parseInt(deck[randomIndex].slice(1), 10);
+            img.id = deck[randomIndex];
+            img.onclick = function() {
+                select_card_onTable(img.id);
+                console.log(mekla);
+            };
+
+            document.getElementById("tapiz").appendChild(img);
+            socket.emit("add card on table", data.roomname, randomIndex);
+        }
+    }
+
+    console.log(index);
+    return index;
+}
+
+function put_card_on_tabletest(deck, n){
     index = []
     let randomIndex = 0
     for (let i = 0; i < n; i++) {
@@ -282,7 +320,9 @@ function leave_it(){
 myturn = roomusers.indexOf(data.name)
 dturn = 0 
 socket.on("start game", () => {
+    document.getElementById("generalscore").style.opacity = "1"
     mekla = []
+    turn = roomusers[0]
     document.getElementById("generalscore").style.display = "none"
     document.getElementById("turnwait").textContent = turn + " turn"
     document.getElementById("winner").style.display = "none"
@@ -429,7 +469,8 @@ function select_my_card(id){
     selected_cards = []
     selected_cardsid = []
     bestsumm = bestsum(cardsOnTable(), myselectedcard)
-    
+    de_active_card()
+    active_card(id)
 }
 
 function select_card_onTable(id){
@@ -444,6 +485,7 @@ function select_card_onTable(id){
     if(document.getElementById(id).value > myselectedcard){
         selected_cards = []
         selected_cardsid = []
+        de_active_card()
         return false
     }
     //selected_cards.length == bestsumm.length
@@ -451,14 +493,23 @@ function select_card_onTable(id){
     console.log(myselectedcard)
     let sum = selected_cards.reduce((acc, curr) => acc + curr, 0);
     if(sum == myselectedcard && selected_cards.length == bestsumm.length){
-        
+        if(selected_cards.includes("d7") || myselectedcardid == "d7"){
+            document.getElementById("hayya").play()
+            socket.emit("alert", data.roomname, "hayya")
+        }
         mekla.push(myselectedcardid)
         selected_cardsid.forEach(cardid => {
             mekla.push(cardid)
             
+            
         });
         socket.emit("remove card from table", data.roomname, selected_cardsid)
         selected_cardsid.forEach(element => {
+            //document.getElementById(element).classList.add("anim");
+            //document.getElementById(element).addEventListener('animationend', function() {
+                //document.getElementById(element).remove();
+            //}, { once: true }); 
+            document.getElementById(element).classList.add("anim")
             document.getElementById(element).remove()
         });
         socket.emit("last eaten", data.roomname, data.name)
@@ -491,13 +542,14 @@ function select_card_onTable(id){
     if(sum > myselectedcard){
         selected_cards = []
         selected_cardsid = []
+        de_active_card()
         
     }
     if(cardsOnTable().length == 0){
         mekla.push("chkoba")
+        document.getElementById("chkobba3").play()
+        socket.emit("alert", data.roomname, "chk")
         socket.emit("my turn done", data.roomname, roomusers ,turn)
-    
-        alert("chkoba")
     }
     console.log(selected_cards)
     
@@ -546,8 +598,9 @@ socket.on("count score", () => {
     document.getElementById("myscore").textContent = score
     document.getElementById("myresscore").textContent = score
 
-    if(score >= 6){
-        socket.emit("show winner", data.roomname, data.name)
+    if(score >= 1){
+        winning_score = score
+        socket.emit("show winner", data.roomname, data.name, score)
     }
 
     deck = original_deck
@@ -588,13 +641,20 @@ socket.on("update score", (usname, scoree) => {
 })
 
 function newg(){
+    winning_score = 0
     if(roomusers[0] != data.name){
+        alert("waiting for opponent")
         return false
     }
     socket.emit("new round", data.roomname)
     document.getElementById("winner").style.display = "none"
+    
     dturn = 0
     turn = roomusers[0]
+    socket.emit("reset score", data.roomname)
+    
+}
+function resetSCore(){
     document.getElementById("myscore").textContent = 0
     document.getElementById("myresscore").textContent = 0
 
@@ -603,9 +663,12 @@ function newg(){
             scid = "score"+element
             document.getElementById(scid).textContent = 0
         }
-        
     });
 }
+socket.on("start reset score", () => {
+    resetSCore()
+})
+
 function next(){
     if(roomusers[0] != data.name){
         return false
@@ -616,8 +679,35 @@ function next(){
     turn = roomusers[0]
     
 }
-socket.on("winner winner", (winnername) => {
+socket.on("winner winner", (winnername, scr) => {
+    if(scr < winning_score){
+        document.getElementById("winnername").textContent = winnername
+        winning_score = scr
+    }else{
+        document.getElementById("winnername").textContent = winnername
+    }
     document.getElementById("winnername").textContent = winnername
     document.getElementById("winner").style.display = "flex"
     document.getElementById("generalscore").style.display = "none"
+    if(score == 0){
+        document.getElementById("generalscore").style.opacity = "0"
+    }
+})
+function active_card(id){
+    document.getElementById(id).style.border = "3px solid black"
+}
+function de_active_card(){
+    const container = document.getElementById("card-container");
+    const children = container.children;
+    for (let i = 0; i < children.length; i++){
+        children[i].style.border = "none";
+    }
+}
+socket.on("alert back", ev => {
+    if(ev == "chk"){
+        document.getElementById("chkobba3").play()
+    }
+    else{
+        document.getElementById("hayya").play()
+    }
 })

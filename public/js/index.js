@@ -1,7 +1,6 @@
 const socket = io()
 
 
-
 function show(){
     document.getElementById("3asba").style.display = "flex"
 }

@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const http = require('http');
 const socketIo = require('socket.io');
 
@@ -189,11 +190,16 @@ io.on('connection', (socket) => {
     io.to(roomname).emit("start game")
   })
 
-
-  socket.on("show winner", (roomname, winnername) => {
-    io.to(roomname).emit("winner winner" , winnername)
+  socket.on("reset score", (roomname) => {
+    io.to(roomname).emit("start reset score")
+  })
+  socket.on("show winner", (roomname, winnername, score) => {
+    io.to(roomname).emit("winner winner" , winnername, score)
   })
 
+  socket.on("alert", (roomname, ev) => {
+    socket.broadcast.to(roomname).emit("alert back", ev)
+  })
   socket.on('disconnect', () => {
     console.log('User disconnected');
   });

@@ -60,7 +60,7 @@ body{
 }
 
 
-#createshow{
+.createshow{
     width: 270px;
     height: 75px;
     color: white;
@@ -74,7 +74,7 @@ body{
     text-decoration: transparent underline ;
     transition: ease 0.25s;
 }
-#createshow:hover{
+.createshow:hover{
     background-color: white;
     color: black;
     text-decoration: red underline;
@@ -229,4 +229,9 @@ footer{
     color: white;
     font-family: "poppins";
     font-size: 18px;
+}
+#createshow1{
+    margin-left: 0;
+    width: 250px;
+    height: 60px;
 }
