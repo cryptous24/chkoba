@@ -20,7 +20,7 @@ function show_rooms(){
 }
 winning_score = 0
 
-  
+
 
 function display_users(lst){
     mekla = []
@@ -342,6 +342,7 @@ socket.on("start game", () => {
 
 socket.on("remove cards", (removethese, eat) => {
     deletefromdeck(removethese)
+    document.getElementById("drawsound").play()
 })
 
 
@@ -452,6 +453,7 @@ document.getElementById("tapiz").onclick = function() {
     if(myselectedcard != 0){
         if(bestsum(cardsOnTable(), myselectedcard).length == 0){
             cardFromHandToTable()
+            document.getElementById("drawsound").play()
             socket.emit("my turn done", data.roomname, roomusers ,turn)
         }
     }
@@ -498,10 +500,9 @@ function select_card_onTable(id){
             socket.emit("alert", data.roomname, "hayya")
         }
         mekla.push(myselectedcardid)
+        document.getElementById("drawsound").play()
         selected_cardsid.forEach(cardid => {
             mekla.push(cardid)
-            
-            
         });
         socket.emit("remove card from table", data.roomname, selected_cardsid)
         selected_cardsid.forEach(element => {
@@ -601,6 +602,7 @@ socket.on("count score", () => {
     if(score >= 1){
         winning_score = score
         socket.emit("show winner", data.roomname, data.name, score)
+        document.getElementById("winner").style.display = "flex"
     }
 
     deck = original_deck
@@ -680,7 +682,7 @@ function next(){
     
 }
 socket.on("winner winner", (winnername, scr) => {
-    if(scr < winning_score){
+    if(scr > winning_score){
         document.getElementById("winnername").textContent = winnername
         winning_score = scr
     }else{

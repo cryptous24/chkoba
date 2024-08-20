@@ -9,6 +9,7 @@ body{
     min-height: 100vh;
     display: flex;
     background-color: #233048;
+    cursor: url(Modern_Black_Outline_Cursor.png), auto;
 }
 .right{
     
@@ -122,7 +123,7 @@ h1{
     width: 100px;
     height: 150px;
     position: absolute;
-    cursor: pointer;
+    cursor: url(color-milk-and-white-chocolate-pointer.png), auto;
     border-radius: 5px;
 }
 .mycard:hover{
@@ -224,7 +225,7 @@ h1{
     background-color: transparent;
     outline: none;
     font-size: 22px;
-    cursor: pointer;
+    cursor: url(color-milk-and-white-chocolate-pointer.png), auto;
     border-radius: 22px;
     transition: ease 0.25s;
 }
@@ -240,7 +241,7 @@ h1{
     background-color: transparent;
     outline: none;
     font-size: 22px;
-    cursor: pointer;
+    cursor: url(color-milk-and-white-chocolate-pointer.png), auto;
     border-radius: 22px;
     transition: ease 0.25s;
     margin-left: 15px;
