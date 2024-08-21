@@ -599,7 +599,7 @@ socket.on("count score", () => {
     document.getElementById("myscore").textContent = score
     document.getElementById("myresscore").textContent = score
 
-    if(score >= 1){
+    if(score >= 11){
         winning_score = score
         socket.emit("show winner", data.roomname, data.name, score)
         document.getElementById("winner").style.display = "flex"
@@ -681,12 +681,14 @@ function next(){
     turn = roomusers[0]
     
 }
-socket.on("winner winner", (winnername, scr) => {
-    if(scr > winning_score){
+
+function show_winner(scr, winnername){
+    if(scr > score){
         document.getElementById("winnername").textContent = winnername
         winning_score = scr
     }else{
         document.getElementById("winnername").textContent = winnername
+        
     }
     document.getElementById("winnername").textContent = winnername
     document.getElementById("winner").style.display = "flex"
@@ -694,6 +696,9 @@ socket.on("winner winner", (winnername, scr) => {
     if(score == 0){
         document.getElementById("generalscore").style.opacity = "0"
     }
+}
+socket.on("winner winner", (winnername, scr) => {
+    show_winner(scr, winnername)
 })
 function active_card(id){
     document.getElementById(id).style.border = "3px solid black"

@@ -293,3 +293,68 @@ h1{
     animation-duration: 1s;
     animation-timing-function: ease-in;
 }
+
+@media only screen and (max-width: 720px) {
+    body{
+        display: flex;
+        flex-direction: column;
+        max-height: 100vh;
+    }
+    .right{
+        width: 100%;
+        height: 25vh;
+        max-height: 25vh;
+        
+        background-color: white;
+    }
+    .middle{
+        width: 100%;
+        height: 50vh;
+        background-color: red;
+    }
+    .left{
+        width: 100%;
+        height: 25vh;
+        max-height: 25vh;
+        background-color: #0092FF;
+    }
+    .hell{
+        display: none;
+    }
+    .tapisholder{
+        position: relative;
+        width: 100%;
+    }
+    #tapiz{
+        position: relative;
+        width: 100%;
+        height: 50vh;
+    }
+    .card{
+        width: 90px;
+        height: 132px;
+    }
+    .card-container{
+        margin-top: 0;
+    }
+    #myimage{
+        margin-top: 0;
+        display: none;
+    }
+    #player2{
+        padding: 0;
+    }
+    #player3{
+        padding: 0;
+        display: none;
+    }
+    #player1{
+        padding: 0;
+    }
+    #pllf{
+        padding: 0;
+    }
+    .mycard{
+        position: relative;
+    }
+}
