@@ -687,7 +687,7 @@ function show_winner(scr, winnername){
         document.getElementById("winnername").textContent = winnername
         winning_score = scr
     }else{
-        document.getElementById("winnername").textContent = winnername
+        document.getElementById("winnername").textContent = data.name
         
     }
     document.getElementById("winnername").textContent = winnername
